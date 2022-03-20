@@ -36,7 +36,10 @@ const getOneCategory = async (req, res, next) => {
   try {
     const { id: categoryId } = req.params;
 
-    const result = await Category.findOne({ _id: categoryId });
+    const result = await Category.findOne({
+      _id: categoryId,
+      user: req.user.id,
+    });
 
     if (!result) {
       throw new CustomAPI.NotFoundError('No Category with id :' + categoryId);
