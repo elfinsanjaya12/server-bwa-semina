@@ -4,6 +4,7 @@ const SpeakerSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+
       required: [true, 'Please provide name'],
       minlength: 3,
       maxlength: 50,

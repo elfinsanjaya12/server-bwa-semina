@@ -2,18 +2,18 @@ const router = require('express').Router();
 const {
   getAllEvent,
   createEvent,
-  // getOneSpeaker,
-  // updateSpeaker,
-  // deleteSpeaker,
+  getOneEvent,
+  updateEvent,
+  deleteEvent,
 } = require('./controller');
 
 const { authenticateUser } = require('../../../middlewares/auth');
 const upload = require('../../../middlewares/multer');
 
 router.get('/', authenticateUser, getAllEvent);
-// router.get('/:id', authenticateUser, getOneSpeaker);
+router.get('/:id', authenticateUser, getOneEvent);
 router.post('/', authenticateUser, upload.single('cover'), createEvent);
-// router.put('/:id', authenticateUser, upload.single('avatar'), updateSpeaker);
-// router.delete('/:id', authenticateUser, deleteSpeaker);
+router.put('/:id', authenticateUser, upload.single('cover'), updateEvent);
+router.delete('/:id', authenticateUser, deleteEvent);
 
 module.exports = router;
