@@ -51,6 +51,8 @@ const createEvent = async (req, res, next) => {
       venueName,
       tagline,
       keyPoint,
+      stock,
+      status,
       category,
       speaker,
     } = req.body;
@@ -77,6 +79,8 @@ const createEvent = async (req, res, next) => {
       throw new CustomAPI.BadRequestError('Please upload image / cover');
     } else {
       result = new Event({
+        stock,
+        status,
         title,
         price,
         date,
@@ -126,6 +130,8 @@ const updateEvent = async (req, res, next) => {
       venueName,
       tagline,
       keyPoint,
+      stock,
+      status,
       category,
       speaker,
     } = req.body;
@@ -160,6 +166,8 @@ const updateEvent = async (req, res, next) => {
       result.category = category;
       result.speaker = speaker;
       result.user = user;
+      result.status = status;
+      result.stock = stock;
     } else {
       let currentImage = `${config.rootPath}/public/uploads/${result.cover}`;
 
@@ -177,6 +185,8 @@ const updateEvent = async (req, res, next) => {
       result.speaker = speaker;
       result.user = user;
       result.cover = req.file.filename;
+      result.status = status;
+      result.stock = stock;
     }
 
     await result.save();

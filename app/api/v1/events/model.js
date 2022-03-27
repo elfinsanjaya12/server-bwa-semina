@@ -36,6 +36,15 @@ const EventSchema = new mongoose.Schema(
       type: [String],
       // required: [true, 'Please provide key point'],
     },
+    status: {
+      type: Boolean,
+      enum: [true, false],
+      default: true,
+    },
+    stock: {
+      type: Number,
+      default: 0,
+    },
     category: {
       type: mongoose.Types.ObjectId,
       ref: 'Category',
